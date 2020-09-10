@@ -24,7 +24,7 @@ describe("App component", () => {
 
   test("Correctly switches between seasons and displays appropriate episodes", async () => {
     //Arrange
-    const { getByText, getAllByText, debug } = render(<App />);
+    const { getByText, getAllByText } = render(<App />);
     await waitFor(() =>
       expect(getAllByText(/Stranger Things/i).length).toBe(2)
     );
@@ -32,10 +32,8 @@ describe("App component", () => {
     userEvent.click(getByText(/select a season/i));
     expect(getByText(/season 1/i)).toBeInTheDocument();
     userEvent.click(getByText(/season 1/i));
-    await waitFor(() =>
-      expect(
-        getByText("Chapter One: The Vanishing of Will Byers")
-      ).toBeInTheDocument()
-    );
+    expect(
+      getByText("Chapter One: The Vanishing of Will Byers")
+    ).toBeInTheDocument();
   });
 });
